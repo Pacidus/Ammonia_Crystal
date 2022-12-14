@@ -17,6 +17,7 @@ On utilise l'outil "qe input generator" disponible en ligne :
 - [https://pranabdas.github.io/espresso/](https://pranabdas.github.io/espresso/)
 
 ## Relaxation
+Nous avons réussis à faire différentes relaxations, le paramètre
 
-
+- [Inputs correspondant à la pression](https://www.quantum-espresso.org/Doc/INPUT_PW.html#idm1105)
 
