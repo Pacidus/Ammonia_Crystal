@@ -1,0 +1,4 @@
+&BANDS
+  prefix = 'AC_Ph_1'
+  outdir = './out'
+  filband = 'AC_bands.dat'/
