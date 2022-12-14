@@ -26,10 +26,13 @@
   mixing_beta =   4.0000000000d-01
 /
 &ions
+  ion_positions = 'from_input'
+  ion_dynamics = 'bfgs'
 /
 &CELL
-  press = 50.d0
+  press = 100.d0
   cell_dofree = 'all'
+  cell_dynamics = 'bfgs'
 /
 ATOMIC_SPECIES
 H      1.00794 H.pbe-rrkjus_psl.1.0.0.UPF
