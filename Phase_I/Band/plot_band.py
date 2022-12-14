@@ -16,8 +16,18 @@ def read_fermi(file_name):
     for line in lines:
         if "the Fermi energy" in line:
             fermi = float(line.split()[4])
-    
     return fermi
+
+def read_Hsym(file_name):
+    # Read the high symetry in band.out
+    Xsym = []
+    with open(file_name, "r") as f:
+        lines = f.readlines()
+    for line in lines:
+        match line.split():
+            case ["high-symmetry", "point:", *xyz, "x", "coordinate", X]: 
+                Xsym.append(float(X))
+    return Xsym
 
 def read_bnd(file_name):
     # Read the bands in Band.dat
