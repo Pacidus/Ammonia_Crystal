@@ -1,5 +1,5 @@
 import numpy as np
-from subprocess import call
+from subprocess import run
 
 Input = """&CONTROL
   calculation = 'scf'
@@ -76,7 +76,7 @@ def CV_input(file, **kwargs):
     with open(file, "w") as f:
         f.write(Input.format(**kwargs))
 
-    call(["pw.x", "-i", file, ">", file.replace("in", "out")])
+    run(["pw.x", "-i", file], stdout=file.replace("in", "out"))
 
 
 if __name__ == "__main__":
