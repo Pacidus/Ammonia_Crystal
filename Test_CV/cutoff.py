@@ -77,7 +77,7 @@ def CV_input(file, **kwargs):
         f.write(Input.format(**kwargs))
 
     with open(file.replace("in", "out"), "w") as f:
-        run(["pw.x", "-i", file], stdout=f)
+        run(["pw.x", "-i", file], shell=True, stdout=f)
 
 
 if __name__ == "__main__":
