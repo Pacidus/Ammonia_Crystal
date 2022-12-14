@@ -81,19 +81,20 @@ def CV_input(file, **kwargs):
 
 
 if __name__ == "__main__":
-    for i, rho in enumerate(np.logspace(1, np.log10(1000), 10)):
-        vals["rho"] = rho
-        CV_input(f"file_{i}.in", **vals)
-
-    with open(f"file_{i}.out", "r") as f:
-        lines = f.readlines()
-
     Fermi = []
     Energy = []
 
-    for line in lines:
-        match line.split():
-            case ["the", "Fermi", "energy", "is", fermi, "ev"]:
-                Fermi.append(fermi)
-            case ["!", "total", "energy", "=", energy, "Ry"]:
-                Energy.append(energy)
+    for i, rho in enumerate(np.logspace(1, np.log10(1000), 10)):
+        vals["rho"] = rho
+        vals["wfc"] = rho / 10
+        CV_input(f"file_{i}.in", **vals)
+
+        with open(f"file_{i}.out", "r") as f:
+            lines = f.readlines()
+
+        for line in lines:
+            match line.split():
+                case ["the", "Fermi", "energy", "is", fermi, "ev"]:
+                    Fermi.append(fermi)
+                case ["!", "total", "energy", "=", energy, "Ry"]:
+                    Energy.append(energy)
