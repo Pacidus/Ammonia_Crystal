@@ -76,11 +76,11 @@ def CV_input(file, **kwargs):
     with open(file, "w") as f:
         f.write(Input.format(**kwargs))
 
-    run(["pw.x", "-i", file], stdout=file.replace("in", "out"))
+    with open(file.replace("in", "out"), "w") as f:
+        run(["pw.x", "-i", file], stdout=f)
 
 
 if __name__ == "__main__":
-
-    for i, rho in enumerate(np.logspace(1, np.log10(1000))):
+    for i, rho in enumerate(np.logspace(1, np.log10(1000), 10)):
         vals["rho"] = rho
         CV_input(f"file_{i}.in", **vals)
