@@ -16,5 +16,7 @@ On utilise l'outil "qe input generator" disponible en ligne :
 - [https://www.jappoker.com/blog/2019/band-diagram-QE/](https://www.jappoker.com/blog/2019/band-diagram-QE/)
 - [https://pranabdas.github.io/espresso/](https://pranabdas.github.io/espresso/)
 
+## Relaxation
+
 
 
