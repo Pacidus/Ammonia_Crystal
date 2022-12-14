@@ -30,8 +30,8 @@
   ion_dynamics = 'bfgs'
 /
 &CELL
-  press = 100.d0
-  cell_dofree = 'all'
+  press = 50.d0
+  cell_dofree = 'xy'
   cell_dynamics = 'bfgs'
 /
 ATOMIC_SPECIES
