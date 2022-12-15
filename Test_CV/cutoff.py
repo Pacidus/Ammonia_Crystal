@@ -94,20 +94,20 @@ if __name__ == "__main__":
     TimeCPU = []
     TimWall = []
 
-    Rho = np.logspace(1, np.log10(1000), 10)
+    Rho = np.logspace(1, 3, 10)
     for i, rho in enumerate(Rho):
         vals["rho"] = rho
-        CV_input(f"file_{i}.in", **vals)
+        CV_input("input.in", **vals)
 
-        with open(f"file_{i}.out", "r") as f:
+        with open("output.out", "r") as f:
             lines = f.readlines()
 
         for line in lines:
             match line.split():
                 case ["the", "Fermi", "energy", "is", fermi, "ev"]:
-                    Fermi.append(fermi)
+                    Fermi.append(float(fermi))
                 case ["!", "total", "energy", "=", energy, "Ry"]:
-                    Energy.append(energy)
+                    Energy.append(float(energy))
                 case ["PWSCF", ":", tcpu, "CPU", twall, "WALL"]:
                     TimeCPU.append(sec(tcpu))
                     TimWall.append(sec(twall))
