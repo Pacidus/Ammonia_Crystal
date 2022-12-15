@@ -80,6 +80,15 @@ def CV_input(file, **kwargs):
         run(["pw.x", "-i", file], stdout=f)
 
 
+dt = [3600, 60, 1]
+tr = {ord("h"): " ", ord("m"): " ", ord("s"): ""}
+
+
+def sec(time):
+    times = time.translate(tr).split()
+    return sum([float(i) * j for i, j in zip(times, dt)])
+
+
 if __name__ == "__main__":
     Fermi = []
     Energy = []
@@ -98,3 +107,9 @@ if __name__ == "__main__":
                     Fermi.append(fermi)
                 case ["!", "total", "energy", "=", energy, "Ry"]:
                     Energy.append(energy)
+                case ["PWSCF", ":", tcpu, "CPU", twall, "WALL"]:
+                    TimeCPU.append(sec(tcpu))
+                    TimeWa.append(sec(twall))
+
+
+np.savetxt("conv.csv", np.array([Rho, Energy, Fermi, TimeWa, TimeCPU]).T)
