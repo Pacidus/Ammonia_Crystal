@@ -61,7 +61,7 @@ vals = {
     "fthr": 1e-5,
     "dgauss": 1.4699723600e-2,
     "rho": 4.8e2,
-    "wfc": 6e1,
+    "wfc": 1e1,
     "econv": 1e-9,
     "beta": 0.5,
 }
@@ -79,12 +79,12 @@ def CV_input(file, **kwargs):
         run(["pw.x", "-i", file], stdout=f)
 
 
-dt = [3600, 60, 1]
+dt = [1, 60, 3600]
 tr = {ord("h"): " ", ord("m"): " ", ord("s"): ""}
 
 
 def sec(time):
-    times = time.translate(tr).split()
+    times = time.translate(tr).split()[::-1]
     return sum([float(i) * j for i, j in zip(times, dt)])
 
 
