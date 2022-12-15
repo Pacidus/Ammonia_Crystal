@@ -91,10 +91,12 @@ def sec(time):
 if __name__ == "__main__":
     Fermi = []
     Energy = []
+    TimeCPU = []
+    TimWall = []
 
-    for i, rho in enumerate(np.logspace(1, np.log10(1000), 10)):
+    Rho = np.logspace(1, np.log10(1000), 10)
+    for i, rho in enumerate(Rho):
         vals["rho"] = rho
-        vals["wfc"] = rho / 10
         CV_input(f"file_{i}.in", **vals)
 
         with open(f"file_{i}.out", "r") as f:
@@ -108,7 +110,6 @@ if __name__ == "__main__":
                     Energy.append(energy)
                 case ["PWSCF", ":", tcpu, "CPU", twall, "WALL"]:
                     TimeCPU.append(sec(tcpu))
-                    TimeWa.append(sec(twall))
+                    TimWall.append(sec(twall))
 
-
-np.savetxt("conv.csv", np.array([Rho, Energy, Fermi, TimeWa, TimeCPU]).T)
+    np.savetxt("conv.csv", np.array([Rho, Energy, Fermi, TimWall, TimeCPU]).T)
